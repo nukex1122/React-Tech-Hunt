@@ -8,11 +8,25 @@ var Play = React.createClass({
     return {
           loggedIn:false,
           user:{
-            name:"Mohsin",
-            level:9000
+            name:"",
+            level:0
           },
-          clues:{la:"You Can't See Him"}
+          clues:{la:""}
         }
+  },
+  loadDataFromServer:function(){
+    $.ajax({
+			url: '/login',
+			type: 'GET',
+			contentType: 'application/json',
+			success: function(data){
+        console.log({user:data.user,clues:data.clues,id:data.id});
+        this.setState({user:data.user,clues:data.clues,id:data.id})
+			}.bind(this)
+		});
+	},
+  componentDidMount:function(){
+    this.loadDataFromServer();
   },
   handleSubmit:function(e){
     e.preventDefault();
@@ -20,9 +34,15 @@ var Play = React.createClass({
         url: '/play',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({"Answer":this.input.value}),
+        data: JSON.stringify({"Answer":this.input.value,level:this.state.user.level,id:this.state.id}),
         success:function(data){
           console.log(data);
+          if (data == "Correct") {
+            console.log("wooohooo");
+            location.reload();
+          }else if(data == "Wrong Answer") {
+
+          }
         }
     })
   },

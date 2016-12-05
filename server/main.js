@@ -9,7 +9,6 @@ var fileStore = require('session-file-store')(session);
 var mongoose = require('mongoose'),
 	assert = require('assert');
 
-var Users = require('./models/users');
 var url = 'mongodb://localhost:27017/User';
 
 mongoose.connect(url);
@@ -18,7 +17,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open',function(){
 	console.log('Connected To Database');
-
+	/*
     Users.create({
       name:"Mohsin",
       id:"Nexus",
@@ -31,7 +30,7 @@ db.once('open',function(){
       }
       console.log('User Added');
       console.log(user);
-    });
+    });*/
 })
 
 var hostname = 'localhost';
@@ -39,29 +38,9 @@ var port = 3000;
 
 var app = express();
 
-var loginRouter = express.Router();
-var cRouter = express.Router();
-
-loginRouter.route('/')
-.post(function(req,res){
-  console.log(req.body);
-  if (req.body.Username == "admin" && req.body.Password == "password") {
-    req.session.user = "admin";
-    res.end("loggedIn");
-  }else {
-    res.end("Error");
-  }
-});
-cRouter.route('/')
-.all(function(req,res,next){
-  next();
-})
-.post(function(req,res){
-  if (req.body.Answer == "johncena") {
-      res.end("Correct");
-  }
-  res.end("Wrong Answer");
-});
+var loginRouter = require('./Routes/loginRouter');
+var cRouter = require('./Routes/playRouter');
+var questionRouter = require('./Routes/qRouter');
 
 app.use(session({
 	name:'session-id',
@@ -72,7 +51,6 @@ app.use(session({
 }))
 
 function auth (req , res , next){
-
   if (req.session && req.session.user == "admin")
     return next();
   else
@@ -80,7 +58,6 @@ function auth (req , res , next){
 }
 
 app.use(morgan('dev'));
-
 
 app.use('/play.html',auth);
 
@@ -113,6 +90,7 @@ app.get('/logout',function(req,res){
   console.log(req.session);
 })
 app.use('/play',cRouter);
+app.use('/q',questionRouter);
 
 app.listen(port, hostname, function(){
   console.log(`Server running at http://${hostname}:${port}/`);

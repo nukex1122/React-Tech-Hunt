@@ -1,6 +1,10 @@
 import React from 'react'
-
-export default React.createClass({
+import {render} from 'react-dom'
+var Home = React.createClass({
+  onClick:function(e){
+    e.preventDefault();
+    window.location.replace('/signUp.html');
+  },
   render(){
     return <div style = {{	"position": "absolute",
             	"left": "50%",
@@ -12,7 +16,9 @@ export default React.createClass({
             <p style = {{"marginBottom":"10%","fontSize":"1.2em"}}>
               The worldwide cryptic hunt is almost here. Gear Up.
             </p>
-            <button className='button' style = {{fontSize:"0.8em"}}>Sign Up</button>
+            <button className='button' style = {{fontSize:"0.8em"}}  onClick = {this.onClick}>Sign Up</button>
           </div>
   }
 })
+
+render(<Home/> ,document.getElementById('app'));

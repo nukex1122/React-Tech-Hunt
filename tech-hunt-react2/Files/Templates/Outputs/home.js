@@ -59,6 +59,11 @@
 	
 	var Home = _react2.default.createClass({
 	  displayName: 'Home',
+	
+	  onClick: function onClick(e) {
+	    e.preventDefault();
+	    window.location.replace('/signUp.html');
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -80,7 +85,7 @@
 	      ),
 	      _react2.default.createElement(
 	        'button',
-	        { className: 'button', style: { fontSize: "0.8em" } },
+	        { className: 'button', style: { fontSize: "0.8em" }, onClick: this.onClick },
 	        'Sign Up'
 	      )
 	    );

@@ -65,15 +65,15 @@
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _Rules = __webpack_require__(/*! ../modules/Rules */ 243);
+	var _Rules = __webpack_require__(/*! ../modules/Rules */ 241);
 	
 	var _Rules2 = _interopRequireDefault(_Rules);
 	
-	var _Play = __webpack_require__(/*! ../modules/Play */ 241);
+	var _Play = __webpack_require__(/*! ../modules/Play */ 243);
 	
 	var _Play2 = _interopRequireDefault(_Play);
 	
-	var _SignIn = __webpack_require__(/*! ../modules/SignIn */ 242);
+	var _SignIn = __webpack_require__(/*! ../modules/SignIn */ 244);
 	
 	var _SignIn2 = _interopRequireDefault(_SignIn);
 	
@@ -27599,21 +27599,23 @@
   \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(/*! react-dom */ 32);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Home = _react2.default.createClass({
-	  displayName: 'Home',
+	exports.default = _react2.default.createClass({
+	  displayName: "Home",
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'div',
+	      "div",
 	      { style: { "position": "absolute",
 	          "left": "50%",
 	          "top": "42%",
@@ -27621,272 +27623,32 @@
 	          "fontSize": "1.4em"
 	        } },
 	      _react2.default.createElement(
-	        'div',
+	        "div",
 	        { style: { "fontWeight": "500", "fontFamily": "Oswald", "fontSize": "1.7em", "color": "#67adff" } },
-	        '29 - 31 February'
+	        "29 - 31 February"
 	      ),
 	      _react2.default.createElement(
-	        'p',
+	        "p",
 	        { style: { "marginBottom": "10%", "fontSize": "1.2em" } },
-	        'The worldwide cryptic hunt is almost here. Gear Up.'
+	        "The worldwide cryptic hunt is almost here. Gear Up."
 	      ),
 	      _react2.default.createElement(
-	        'button',
-	        { className: 'button', style: { fontSize: "0.8em" } },
-	        'Sign Up'
+	        "button",
+	        { className: "button", style: { fontSize: "0.8em" } },
+	        "Sign Up"
 	      )
 	    );
 	  }
 	});
-	
-	(0, _reactDom.render)(_react2.default.createElement(Home, null), document.getElementById('app'));
 
 /***/ },
 /* 241 */
-/*!*******************************!*\
-  !*** ./Files/modules/Play.js ***!
-  \*******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 32);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Play = _react2.default.createClass({
-	  displayName: 'Play',
-	
-	  getInitialState: function getInitialState() {
-	    console.log("Test");
-	
-	    return {
-	      loggedIn: false,
-	      user: {
-	        name: "Mohsin",
-	        level: 9000
-	      },
-	      clues: { la: "You Can't See Him" }
-	    };
-	  },
-	  handleSubmit: function handleSubmit(e) {
-	    e.preventDefault();
-	    $.ajax({
-	      url: '/play',
-	      type: 'POST',
-	      contentType: 'application/json',
-	      data: JSON.stringify({ "Answer": this.input.value }),
-	      success: function success(data) {
-	        console.log(data);
-	      }
-	    });
-	  },
-	  handleLogout: function handleLogout(e) {
-	    e.preventDefault();
-	    $.ajax({
-	      url: '/logout',
-	      type: 'GET',
-	      contentType: 'application/json',
-	      success: function success(data) {
-	        console.log("loggedOut");
-	        window.location.replace('home.html');
-	      }
-	    });
-	  },
-	  render: function render() {
-	    var _this = this;
-	
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'container' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'navbar' },
-	        _react2.default.createElement(
-	          'a',
-	          { href: '/', style: { "textDecoration": "none", "color": "#67adff", "float": "left", "marginTop": "2%", "marginLeft": "15%", "fontWeight": "300", "fontSize": "1.3em" } },
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            'Techathlon-3000'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'nav',
-	          null,
-	          _react2.default.createElement(
-	            'ul',
-	            { style: { "width": "60%", "marginRight": "15%" } },
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#', className: 'active', onClick: this.handleLogout },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Log Out'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              { href: '/rules.html' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Rules'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              { href: '/home.html' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Home'
-	              )
-	            )
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { style: { "marginTop": "3%" } },
-	        _react2.default.createElement(
-	          'h1',
-	          { style: { "fontWeight": "300" } },
-	          'Welcome ',
-	          this.state.user.name,
-	          ' '
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          { style: { "fontWeight": "300" } },
-	          'You are on Level ',
-	          this.state.user.level
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: { "marginTop": "2%" } },
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            this.state.clues.la
-	          ),
-	          _react2.default.createElement(
-	            'form',
-	            { onSubmit: this.handleSubmit },
-	            _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
-	                return _this.input = input;
-	              }, placeholder: 'Enter Your Answer', className: 'input', style: { "marginTop": "2%" } }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'submit', className: 'button', style: { "width": "22%", "marginTop": "2%" } },
-	              'Submit'
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	(0, _reactDom.render)(_react2.default.createElement(Play, null), document.getElementById('app'));
-
-/***/ },
-/* 242 */
-/*!*********************************!*\
-  !*** ./Files/modules/SignIn.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 32);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var SignIn = _react2.default.createClass({
-	  displayName: 'SignIn',
-	
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
-	  handleSubmit: function handleSubmit(e) {
-	    e.preventDefault();
-	
-	    var creds = {
-	      "Username": this.uname.value,
-	      "Password": this.pass.value
-	    };
-	    $.ajax({
-	      url: '/login',
-	      type: 'POST',
-	      contentType: 'application/json',
-	      data: JSON.stringify(creds),
-	      success: function success(data) {
-	        console.log(data);
-	        if (data == "loggedIn") {
-	          console.log("Successfull");
-	          window.location.replace('/play.html');
-	        } else {
-	          console.log("Not Successfull");
-	        }
-	      }
-	    });
-	  },
-	  render: function render() {
-	    var _this = this;
-	
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'form',
-	        { style: { 'marginTop': "5%" }, onSubmit: this.handleSubmit },
-	        _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
-	            return _this.uname = input;
-	          }, placeholder: 'Username', className: 'input', style: { "marginTop": "2%" }, required: true }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { type: 'password', ref: function ref(input) {
-	            return _this.pass = input;
-	          }, placeholder: 'Password', className: 'input', style: { "marginTop": "1%" }, required: true }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'button',
-	          { type: 'submit', className: 'button', style: { "width": "22%", "marginTop": "2%" } },
-	          'Sign In'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { style: {
-	            "marginTop": "2%",
-	            "color": "#999"
-	          } },
-	        'Forgot Your Password?'
-	      )
-	    );
-	  }
-	});
-	
-	(0, _reactDom.render)(_react2.default.createElement(SignIn, null), document.getElementById('app'));
-
-/***/ },
-/* 243 */
 /*!********************************!*\
   !*** ./Files/modules/Rules.js ***!
   \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
@@ -28038,7 +27800,267 @@
 	    }
 	});
 	
+	module.export = Rules;
 	(0, _reactDom.render)(_react2.default.createElement(Rules, null), document.getElementById('app'));
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 242)(module)))
+
+/***/ },
+/* 242 */
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 243 */
+/*!*******************************!*\
+  !*** ./Files/modules/Play.js ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Play = _react2.default.createClass({
+	  displayName: 'Play',
+	
+	  getInitialState: function getInitialState() {
+	    console.log("Test");
+	
+	    return {
+	      loggedIn: false,
+	      user: {
+	        name: "Mohsin",
+	        level: 9000
+	      },
+	      clues: { la: "You Can't See Him" }
+	    };
+	  },
+	  handleSubmit: function handleSubmit(e) {
+	    e.preventDefault();
+	    $.ajax({
+	      url: '/play',
+	      type: 'POST',
+	      contentType: 'application/json',
+	      data: JSON.stringify({ "Answer": this.input.value }),
+	      success: function success(data) {
+	        console.log(data);
+	      }
+	    });
+	  },
+	  handleLogout: function handleLogout(e) {
+	    e.preventDefault();
+	    $.ajax({
+	      url: '/logout',
+	      type: 'GET',
+	      contentType: 'application/json',
+	      success: function success(data) {
+	        console.log("loggedOut");
+	        window.location.replace('home.html');
+	      }
+	    });
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'navbar' },
+	        _react2.default.createElement(
+	          'a',
+	          { href: '/', style: { "textDecoration": "none", "color": "#67adff", "float": "left", "marginTop": "2%", "marginLeft": "15%", "fontWeight": "300", "fontSize": "1.3em" } },
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            'Techathlon-3000'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'nav',
+	          null,
+	          _react2.default.createElement(
+	            'ul',
+	            { style: { "width": "60%", "marginRight": "15%" } },
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#', className: 'active', onClick: this.handleLogout },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Log Out'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: '/rules.html' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Rules'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: '/home.html' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Home'
+	              )
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { "marginTop": "3%" } },
+	        _react2.default.createElement(
+	          'h1',
+	          { style: { "fontWeight": "300" } },
+	          'Welcome ',
+	          this.state.user.name,
+	          ' '
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          { style: { "fontWeight": "300" } },
+	          'You are on Level ',
+	          this.state.user.level
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: { "marginTop": "2%" } },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.state.clues.la
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            { onSubmit: this.handleSubmit },
+	            _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
+	                return _this.input = input;
+	              }, placeholder: 'Enter Your Answer', className: 'input', style: { "marginTop": "2%" } }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit', className: 'button', style: { "width": "22%", "marginTop": "2%" } },
+	              'Submit'
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Play;
+	(0, _reactDom.render)(_react2.default.createElement(Play, null), document.getElementById('app'));
+
+/***/ },
+/* 244 */
+/*!*********************************!*\
+  !*** ./Files/modules/SignIn.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SignIn = _react2.default.createClass({
+	  displayName: 'SignIn',
+	
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+	  handleSubmit: function handleSubmit(e) {
+	    e.preventDefault();
+	
+	    var creds = {
+	      "Username": this.uname.value,
+	      "Password": this.pass.value
+	    };
+	    $.ajax({
+	      url: '/login',
+	      type: 'POST',
+	      contentType: 'application/json',
+	      data: JSON.stringify(creds),
+	      success: function success(data) {
+	        console.log(data);
+	        if (data == "loggedIn") {
+	          console.log("Successfull");
+	          window.location.replace('/play.html');
+	        } else {
+	          console.log("Not Successfull");
+	        }
+	      }
+	    });
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'form',
+	        { style: { 'marginTop': "5%" }, onSubmit: this.handleSubmit },
+	        _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
+	            return _this.uname = input;
+	          }, placeholder: 'Username', className: 'input', style: { "marginTop": "2%" }, required: true }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'password', ref: function ref(input) {
+	            return _this.pass = input;
+	          }, placeholder: 'Password', className: 'input', style: { "marginTop": "1%" }, required: true }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit', className: 'button', style: { "width": "22%", "marginTop": "2%" } },
+	          'Sign In'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: {
+	            "marginTop": "2%",
+	            "color": "#999"
+	          } },
+	        'Forgot Your Password?'
+	      )
+	    );
+	  }
+	});
+	
+	(0, _reactDom.render)(_react2.default.createElement(SignIn, null), document.getElementById('app'));
 
 /***/ }
 /******/ ]);

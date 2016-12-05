@@ -42,9 +42,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*******************************!*\
-  !*** ./Files/Modules/Play.js ***!
-  \*******************************/
+/*!*********************************!*\
+  !*** ./Files/Modules/SignUp.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57,60 +57,34 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Play = _react2.default.createClass({
-	  displayName: 'Play',
+	var SignUp = _react2.default.createClass({
+	  displayName: 'SignUp',
 	
 	  getInitialState: function getInitialState() {
-	    console.log("Test");
-	
-	    return {
-	      loggedIn: false,
-	      user: {
-	        name: "",
-	        level: 0
-	      },
-	      clues: { la: "" }
-	    };
-	  },
-	  loadDataFromServer: function loadDataFromServer() {
-	    $.ajax({
-	      url: '/login',
-	      type: 'GET',
-	      contentType: 'application/json',
-	      success: function (data) {
-	        console.log({ user: data.user, clues: data.clues, id: data.id });
-	        this.setState({ user: data.user, clues: data.clues, id: data.id });
-	      }.bind(this)
-	    });
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.loadDataFromServer();
+	    return {};
 	  },
 	  handleSubmit: function handleSubmit(e) {
 	    e.preventDefault();
+	
+	    var creds = {
+	      name: this.name.value,
+	      id: this.uname.value,
+	      password: this.pass.value
+	    };
 	    $.ajax({
-	      url: '/play',
+	      url: '/login/addUser',
 	      type: 'POST',
 	      contentType: 'application/json',
-	      data: JSON.stringify({ "Answer": this.input.value, level: this.state.user.level, id: this.state.id }),
+	      data: JSON.stringify(creds),
 	      success: function success(data) {
 	        console.log(data);
-	        if (data == "Correct") {
-	          console.log("wooohooo");
-	          location.reload();
-	        } else if (data == "Wrong Answer") {}
-	      }
-	    });
-	  },
-	  handleLogout: function handleLogout(e) {
-	    e.preventDefault();
-	    $.ajax({
-	      url: '/logout',
-	      type: 'GET',
-	      contentType: 'application/json',
-	      success: function success(data) {
-	        console.log("loggedOut");
-	        window.location.replace('home.html');
+	        if (data == "SignedUp") {
+	          console.log("Successfull");
+	          window.location.replace('/signIn.html');
+	        } else {
+	          console.log("Not Successfull");
+	          //add test cases for same id etc.
+	        }
 	      }
 	    });
 	  },
@@ -119,100 +93,34 @@
 	
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'container' },
+	      null,
+	      _react2.default.createElement('div', { className: 'sign-up-status' }),
 	      _react2.default.createElement(
-	        'div',
-	        { className: 'navbar' },
+	        'form',
+	        { style: { 'marginTop': "5%" }, onSubmit: this.handleSubmit },
+	        _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
+	            return _this.name = input;
+	          }, placeholder: 'Full Name', className: 'input', style: { "marginTop": "2%" }, required: true }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
+	            return _this.uname = input;
+	          }, placeholder: 'Username', className: 'input', style: { "marginTop": "1%" }, required: true }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'password', ref: function ref(input) {
+	            return _this.pass = input;
+	          }, placeholder: 'Password', className: 'input', style: { "marginTop": "1%" }, required: true }),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
-	          'a',
-	          { href: '/', style: { "textDecoration": "none", "color": "#67adff", "float": "left", "marginTop": "2%", "marginLeft": "15%", "fontWeight": "300", "fontSize": "1.3em" } },
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            'Techathlon-3000'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'nav',
-	          null,
-	          _react2.default.createElement(
-	            'ul',
-	            { style: { "width": "60%", "marginRight": "15%" } },
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#', className: 'active', onClick: this.handleLogout },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Log Out'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              { href: '/rules.html' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Rules'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              { href: '/home.html' },
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Home'
-	              )
-	            )
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { style: { "marginTop": "3%" } },
-	        _react2.default.createElement(
-	          'h1',
-	          { style: { "fontWeight": "300" } },
-	          'Welcome ',
-	          this.state.user.name,
-	          ' '
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          { style: { "fontWeight": "300" } },
-	          'You are on Level ',
-	          this.state.user.level
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: { "marginTop": "2%" } },
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            this.state.clues.la
-	          ),
-	          _react2.default.createElement(
-	            'form',
-	            { onSubmit: this.handleSubmit },
-	            _react2.default.createElement('input', { type: 'text', ref: function ref(input) {
-	                return _this.input = input;
-	              }, placeholder: 'Enter Your Answer', className: 'input', style: { "marginTop": "2%" } }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'submit', className: 'button', style: { "width": "22%", "marginTop": "2%" } },
-	              'Submit'
-	            )
-	          )
+	          'button',
+	          { type: 'submit', className: 'button', style: { "width": "22%", "marginTop": "2%" } },
+	          'Register'
 	        )
 	      )
 	    );
 	  }
 	});
 	
-	module.exports = Play;
-	(0, _reactDom.render)(_react2.default.createElement(Play, null), document.getElementById('app'));
+	(0, _reactDom.render)(_react2.default.createElement(SignUp, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -22453,4 +22361,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=play.js.map
+//# sourceMappingURL=signUp.js.map

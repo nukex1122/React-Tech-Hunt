@@ -8,7 +8,8 @@ var UserSchema = new Schema({
   },
   id:{
     type:String,
-    required:true
+    required:true,
+    unique:true
   },
   admin:{
     type:Boolean,
@@ -20,7 +21,8 @@ var UserSchema = new Schema({
   },
   level:{
     type:Number,
-    required:true
+    required:false,
+    default:0
   }
 })
 
